@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="wrapper">
+        <div id="taulell"></div>
+    </div>
+    
+    <script src="dist/casella.js"></script>
+    <script src="dist/joc.js"></script>
+    <script src="dist/tauler.js"></script>
+    <script>
+        // Create a Tauler instance first
+        const tauler = new Tauler(5, 5);
+
+        // Create a Joc instance with the Tauler
+        const joc = new Joc(tauler);
+
+        // Call the imprimirTauler method
+        joc.tauler.imprimirTauler();
+        joc.dibuixarTauler();
+    </script>
+</body>
+</html>
