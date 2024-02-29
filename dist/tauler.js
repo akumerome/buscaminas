@@ -4,6 +4,9 @@ var Tauler = /** @class */ (function () {
         this.columnes = columnes;
         this.inicialitzarTaulell();
     }
+    Tauler.prototype.getCaselles = function () {
+        return this.caselles;
+    };
     Tauler.prototype.inicialitzarTaulell = function () {
         this.crearTaulell();
         this.inicialitzarCaselles();
@@ -25,8 +28,8 @@ var Tauler = /** @class */ (function () {
     };
     Tauler.prototype.collocarMina = function () {
         var isMina = false;
-        var number = Math.floor(Math.random() * 10);
-        if (number === 0 || number === 1) {
+        var number = Math.random();
+        if (number < 0.15) {
             isMina = true;
         }
         return isMina;

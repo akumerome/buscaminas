@@ -1,5 +1,5 @@
 class Tauler {
-    public caselles: Array<Array<Casella>>; // Array bidimensional de caselles
+    private caselles: Array<Array<Casella>>; // Array bidimensional de caselles
     private files: number;
     private columnes: number;
 
@@ -7,6 +7,10 @@ class Tauler {
         this.files = files;
         this.columnes = columnes;
         this.inicialitzarTaulell();
+    }
+
+    public getCaselles(): Array<Array<Casella>> {
+        return this.caselles;
     }
 
     public inicialitzarTaulell() {
@@ -33,9 +37,9 @@ class Tauler {
 
     public collocarMina(){
         let isMina : boolean = false
-        const number : number = Math.floor(Math.random() * 10);
+        const number : number = Math.random();
 
-        if (number === 0 || number === 1) {
+        if (number < 0.15) {
             isMina = true;
         }
 
