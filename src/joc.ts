@@ -44,6 +44,7 @@ class Joc {
                         img.src="./img/mina.png";
                     } else {
                         img.src=`./img/Minesweeper_${this.calcularMinesProperes(i, j)}.gif`;
+                        this.comprovarVictoria();
                     }
                 }
 
@@ -76,7 +77,9 @@ class Joc {
 
             if (this.tauler.getCaselles()[fila][columna].getEsMina()) {
                 this.revelarTauler()
-                alert("BOOOM! Has saltat pels aires!");
+                setTimeout(() => {
+                    alert("BOOOM! Has saltat pels aires!");
+                }, 1000);
             }
 
             // Actualitzem la representació visual del tauler en l'interfície d'usuari
@@ -91,6 +94,27 @@ class Joc {
                 this.tauler.getCaselles()[i][j].setRevelada(true);
             }
         }
+    }
+
+    private comprovarVictoria() {
+
+        let esVictoria : boolean = true;
+
+        for (let i = 0; i < this.tauler.getCaselles().length; i++) {
+            for (let j = 0; j < this.tauler.getCaselles()[i].length; j++) {
+                if (!this.tauler.getCaselles()[i][j].getRevelada() && !this.tauler.getCaselles()[i][j].getEsMina()) {
+                    esVictoria = false;
+                }
+            }
+        }
+
+        if (esVictoria) {
+            this.revelarTauler()
+            setTimeout(() => {
+                alert("Has guanyat la partida!");
+            }, 1000);
+        }
+        
     }
 
     private revelarCasellaSenseMina(fila: number, columna: number, cnt: number) {

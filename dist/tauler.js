@@ -29,7 +29,7 @@ var Tauler = /** @class */ (function () {
     Tauler.prototype.collocarMina = function () {
         var isMina = false;
         var number = Math.random();
-        if (number < 0.10) {
+        if (number < 0.2) {
             isMina = true;
         }
         return isMina;

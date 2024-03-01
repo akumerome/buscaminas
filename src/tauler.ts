@@ -39,7 +39,7 @@ class Tauler {
         let isMina : boolean = false
         const number : number = Math.random();
 
-        if (number < 0.10) {
+        if (number < 0.2) {
             isMina = true;
         }
 

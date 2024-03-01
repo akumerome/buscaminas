@@ -34,6 +34,7 @@ var Joc = /** @class */ (function () {
                     }
                     else {
                         img.src = "./img/Minesweeper_".concat(this_1.calcularMinesProperes(i, j), ".gif");
+                        this_1.comprovarVictoria();
                     }
                 }
                 row.appendChild(cell);
@@ -64,7 +65,9 @@ var Joc = /** @class */ (function () {
             }
             if (this.tauler.getCaselles()[fila][columna].getEsMina()) {
                 this.revelarTauler();
-                alert("BOOOM! Has saltat pels aires!");
+                setTimeout(function () {
+                    alert("BOOOM! Has saltat pels aires!");
+                }, 1000);
             }
             // Actualitzem la representació visual del tauler en l'interfície d'usuari
             this.eliminarTauler();
@@ -76,6 +79,22 @@ var Joc = /** @class */ (function () {
             for (var j = 0; j < this.tauler.getCaselles()[i].length; j++) {
                 this.tauler.getCaselles()[i][j].setRevelada(true);
             }
+        }
+    };
+    Joc.prototype.comprovarVictoria = function () {
+        var esVictoria = true;
+        for (var i = 0; i < this.tauler.getCaselles().length; i++) {
+            for (var j = 0; j < this.tauler.getCaselles()[i].length; j++) {
+                if (!this.tauler.getCaselles()[i][j].getRevelada() && !this.tauler.getCaselles()[i][j].getEsMina()) {
+                    esVictoria = false;
+                }
+            }
+        }
+        if (esVictoria) {
+            this.revelarTauler();
+            setTimeout(function () {
+                alert("Has guanyat la partida!");
+            }, 1000);
         }
     };
     Joc.prototype.revelarCasellaSenseMina = function (fila, columna, cnt) {
