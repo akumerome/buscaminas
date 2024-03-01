@@ -6,14 +6,18 @@ var Joc = /** @class */ (function () {
         var _this = this;
         var tableContainer = document.createElement('div');
         tableContainer.classList.add('contenidor-tauler');
-        var tableElement = document.createElement('table');
+        var tableElement = document.createElement('div');
         tableElement.classList.add('tauler');
         var _loop_1 = function (i) {
-            var row = document.createElement('tr');
+            var row = document.createElement('div');
+            row.classList.add('fila');
             var _loop_2 = function (j) {
-                var cell = document.createElement('td');
+                var cell = document.createElement('div');
                 cell.classList.add('casella');
                 cell.setAttribute('id', "c".concat(i, "-").concat(j));
+                var img = document.createElement('img');
+                img.src = "./img/square.gif";
+                cell.appendChild(img);
                 // Afegim click event listener per revelar casella
                 cell.addEventListener('click', function () { return _this.revelarCasella(i, j); });
                 // Si la casella no ha sigut encara revelada afegim right click event listener per marcar casella com a sospitosa
@@ -22,14 +26,14 @@ var Joc = /** @class */ (function () {
                 }
                 // Si la casella ha sigut marcada afegim class per pintar-la com a marcada
                 if (this_1.tauler.getCaselles()[i][j].getMarcada()) {
-                    cell.classList.add('marcada');
+                    img.src = "./img/flag.png";
                 }
                 if (this_1.tauler.getCaselles()[i][j].getRevelada()) {
                     if (this_1.tauler.getCaselles()[i][j].getEsMina()) {
-                        cell.textContent = "M";
+                        img.src = "./img/mina.png";
                     }
                     else {
-                        cell.textContent = this_1.calcularMinesProperes(i, j);
+                        img.src = "./img/Minesweeper_".concat(this_1.calcularMinesProperes(i, j), ".gif");
                     }
                 }
                 row.appendChild(cell);
@@ -135,7 +139,7 @@ var Joc = /** @class */ (function () {
                 }
             }
         }
-        return qtyMines.toString();
+        return qtyMines;
     };
     Joc.prototype.eliminarTauler = function () {
         var tauler = document.querySelector('.contenidor-tauler');

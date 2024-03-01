@@ -9,17 +9,22 @@ class Joc {
 
         const tableContainer = document.createElement('div');
         tableContainer.classList.add('contenidor-tauler');
-        const tableElement = document.createElement('table');
+        const tableElement = document.createElement('div');
         tableElement.classList.add('tauler');
 
         for (let i = 0; i < this.tauler.getCaselles().length; i++) {
-            const row = document.createElement('tr');
+            const row = document.createElement('div');
+            row.classList.add('fila');
 
             for (let j = 0; j < this.tauler.getCaselles()[i].length; j++) {
-                const cell = document.createElement('td');
+                const cell = document.createElement('div');
 
                 cell.classList.add('casella');
                 cell.setAttribute('id', `c${i}-${j}`);
+
+                const img = document.createElement('img');
+                img.src="./img/square.gif";
+                cell.appendChild(img);
 
                 // Afegim click event listener per revelar casella
                 cell.addEventListener('click', () => this.revelarCasella(i, j));
@@ -31,14 +36,14 @@ class Joc {
 
                 // Si la casella ha sigut marcada afegim class per pintar-la com a marcada
                 if (this.tauler.getCaselles()[i][j].getMarcada()) {
-                    cell.classList.add('marcada');
+                    img.src="./img/flag.png";
                 }
 
                 if (this.tauler.getCaselles()[i][j].getRevelada()) {
                     if (this.tauler.getCaselles()[i][j].getEsMina()) {
-                        cell.textContent = "M";
+                        img.src="./img/mina.png";
                     } else {
-                        cell.textContent = this.calcularMinesProperes(i, j);
+                        img.src=`./img/Minesweeper_${this.calcularMinesProperes(i, j)}.gif`;
                     }
                 }
 
@@ -159,7 +164,7 @@ class Joc {
             }
         }
 
-        return qtyMines.toString();
+        return qtyMines;
     }
 
     private eliminarTauler() {
