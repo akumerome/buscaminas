@@ -89,9 +89,9 @@ class Joc {
     }
 
     private revelarTauler() {
-        for (let i = 0; i < this.tauler.getCaselles().length; i++) {
-            for (let j = 0; j < this.tauler.getCaselles()[i].length; j++) {
-                this.tauler.getCaselles()[i][j].setRevelada(true);
+        for (const row of this.tauler.getCaselles()) {
+            for (const casella of row) {
+                casella.setRevelada(true);
             }
         }
     }
@@ -100,9 +100,9 @@ class Joc {
 
         let esVictoria : boolean = true;
 
-        for (let i = 0; i < this.tauler.getCaselles().length; i++) {
-            for (let j = 0; j < this.tauler.getCaselles()[i].length; j++) {
-                if (!this.tauler.getCaselles()[i][j].getRevelada() && !this.tauler.getCaselles()[i][j].getEsMina()) {
+        for (const row of this.tauler.getCaselles()) {
+            for (const casella of row) {
+                if (!casella.getRevelada() && !casella.getEsMina()) {
                     esVictoria = false;
                 }
             }

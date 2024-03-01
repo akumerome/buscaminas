@@ -75,17 +75,21 @@ var Joc = /** @class */ (function () {
         }
     };
     Joc.prototype.revelarTauler = function () {
-        for (var i = 0; i < this.tauler.getCaselles().length; i++) {
-            for (var j = 0; j < this.tauler.getCaselles()[i].length; j++) {
-                this.tauler.getCaselles()[i][j].setRevelada(true);
+        for (var _i = 0, _a = this.tauler.getCaselles(); _i < _a.length; _i++) {
+            var row = _a[_i];
+            for (var _b = 0, row_1 = row; _b < row_1.length; _b++) {
+                var casella = row_1[_b];
+                casella.setRevelada(true);
             }
         }
     };
     Joc.prototype.comprovarVictoria = function () {
         var esVictoria = true;
-        for (var i = 0; i < this.tauler.getCaselles().length; i++) {
-            for (var j = 0; j < this.tauler.getCaselles()[i].length; j++) {
-                if (!this.tauler.getCaselles()[i][j].getRevelada() && !this.tauler.getCaselles()[i][j].getEsMina()) {
+        for (var _i = 0, _a = this.tauler.getCaselles(); _i < _a.length; _i++) {
+            var row = _a[_i];
+            for (var _b = 0, row_2 = row; _b < row_2.length; _b++) {
+                var casella = row_2[_b];
+                if (!casella.getRevelada() && !casella.getEsMina()) {
                     esVictoria = false;
                 }
             }
